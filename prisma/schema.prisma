@@ -1,0 +1,24 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client" // Alterado o caminho de saída
+}
+
+// Configure your database connection here.
+// https://www.prisma.io/docs/reference/database-reference/connection-urls
+datasource db {
+  provider = "postgresql" // ou o nome do seu conector
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+}
+
+model Product {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String?
+}
